@@ -174,7 +174,7 @@ Please make sure to update tests as appropriate.
 
 ## Contributors
 - [Sajid Mahamud](https://github.com/sajidmahamud835)
-- 
+- [Shadik Mahamud](https://github.com/shadikmahamudsohan)  
 Add your name here if you contribute to this project.
 
 ## Contact

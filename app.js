@@ -30,7 +30,7 @@ const puppeteer = {
         '--single-process',
         '--disable-gpu'
     ],
-}
+};
 
 const clientGenerator = (session, id) => {
     return new Client({
@@ -47,7 +47,7 @@ const client4 = clientGenerator('./sessions/session4.json', '4');
 const client5 = clientGenerator('./sessions/session5.json', '5');
 const client6 = clientGenerator('./sessions/session6.json', '6');
 
-clients = [{ id: 1, client: client1, sessionPath: './sessions/session1.json' }, { id: 2, client: client2, sessionPath: './sessions/session2.json' }, { id: 3, client: client3, sessionPath: './sessions/session3.json' }, { id: 4, client: client4, sessionPath: './sessions/session4.json' }, { id: 5, client: client5, sessionPath: './sessions/session5.json' }, { id: 6, client: client6, sessionPath: './sessions/session6.json' }];
+const clients = [{ id: 1, client: client1, sessionPath: './sessions/session1.json' }, { id: 2, client: client2, sessionPath: './sessions/session2.json' }, { id: 3, client: client3, sessionPath: './sessions/session3.json' }, { id: 4, client: client4, sessionPath: './sessions/session4.json' }, { id: 5, client: client5, sessionPath: './sessions/session5.json' }, { id: 6, client: client6, sessionPath: './sessions/session6.json' }];
 
 let qr_data = null;
 
@@ -58,10 +58,6 @@ try {
 
     clients.forEach((client) => {
 
-        app.get(`/${client.id}`, (req, res) => {
-            res.send(`API is not running! Please start the session by <a href=/${client.id}/init>Clicking here</a>.`);
-        });
-
         app.get(`/${client.id}/init`, (req, res) => {
             // check if client is ready 
             if (client.client.isReady) {
@@ -71,7 +67,6 @@ try {
                 res.send('Client initialized');
             }
         });
-
         client.client.on('qr', (qr) => {
             console.log('QR RECEIVED', qr);
             app.get(`/${client.id}/`, (req, res) => {
@@ -104,7 +99,7 @@ try {
             });
         });
 
-        client.client.on('authenticated', (session) => {
+        client.client.on('authenticated', () => {
             console.log(client.id, ' AUTHENTICATED');
 
         });
@@ -181,7 +176,7 @@ try {
                         const server_url = postApi;
                         const axios = require('axios');
                         const data = JSON.stringify({
-                            instanceid: client.client.id,
+                            "instanceid": client.client.id,
                             ...msg
                         });
 
