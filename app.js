@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 const PCRoption = {
     revision: "",
     detectionPath: "",
-    folderName: ".chromium-browser-snapshots",
+    folderName: "./.chromium-browser-snapshots",
     defaultHosts: ["https://storage.googleapis.com", "https://npm.taobao.org/mirrors"],
     hosts: [],
     cacheRevisions: 2,
